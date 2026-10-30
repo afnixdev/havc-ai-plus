@@ -1,0 +1,132 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/*
+ * Light theme only (dark mode is out of scope for Phase 1, see ui-context.md).
+ * `dark:` is bound to a `.dark` class that is never set, so the dark variants
+ * inside the generated shadcn components never apply — not even when the OS
+ * prefers a dark color scheme.
+ */
+@custom-variant dark (&:is(.dark *));
+
+/* Design tokens — source of truth: context/ui-context.md */
+:root {
+  --bg-base: #f6f8fb;
+  --bg-surface: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-subtle: #eef2f7;
+
+  --border-default: #dfe5ee;
+  --border-strong: #c3ccd9;
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-faint: #94a3b8;
+
+  --accent-primary: #0a6cff;
+  --accent-primary-hover: #0857cc;
+  --accent-primary-dim: rgba(10, 108, 255, 0.1);
+
+  --accent-ai: #6457f9;
+  --accent-ai-dim: rgba(100, 87, 249, 0.1);
+
+  --emergency: #e5381e;
+  --emergency-dim: rgba(229, 56, 30, 0.1);
+
+  --state-error: #dc2626;
+  --state-success: #059669;
+  --state-warning: #d97706;
+  --state-info: #0284c7;
+
+  /* shadcn/ui variables, mapped onto the tokens above */
+  --background: var(--bg-base);
+  --foreground: var(--text-primary);
+  --card: var(--bg-surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-elevated);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--accent-primary);
+  --primary-foreground: #ffffff;
+  --secondary: var(--bg-subtle);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-subtle);
+  --muted-foreground: var(--text-muted);
+  --accent: var(--bg-subtle);
+  --accent-foreground: var(--text-primary);
+  --destructive: var(--state-error);
+  --border: var(--border-default);
+  --input: var(--border-strong);
+  --ring: var(--accent-primary);
+  --radius: 0.625rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+
+  /* Project utilities (bg-base, text-copy-primary, bg-brand, …) */
+  --color-base: var(--bg-base);
+  --color-surface: var(--bg-surface);
+  --color-elevated: var(--bg-elevated);
+  --color-subtle: var(--bg-subtle);
+  --color-surface-border: var(--border-default);
+  --color-surface-border-strong: var(--border-strong);
+  --color-copy-primary: var(--text-primary);
+  --color-copy-secondary: var(--text-secondary);
+  --color-copy-muted: var(--text-muted);
+  --color-copy-faint: var(--text-faint);
+  --color-brand: var(--accent-primary);
+  --color-brand-hover: var(--accent-primary-hover);
+  --color-accent-dim: var(--accent-primary-dim);
+  --color-ai: var(--accent-ai);
+  --color-ai-dim: var(--accent-ai-dim);
+  --color-emergency: var(--emergency);
+  --color-emergency-dim: var(--emergency-dim);
+  --color-state-error: var(--state-error);
+  --color-state-success: var(--state-success);
+  --color-state-warning: var(--state-warning);
+  --color-state-info: var(--state-info);
+
+  /* shadcn/ui utilities (bg-primary, text-muted-foreground, …) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
