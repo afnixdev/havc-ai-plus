@@ -40,6 +40,13 @@
   --state-warning: #d97706;
   --state-info: #0284c7;
 
+  /* Dark editor chrome (top navbar) */
+  --bg-chrome: #0f172a;
+  --bg-chrome-hover: #1e293b;
+  --border-chrome: #1e293b;
+  --text-on-chrome: #f8fafc;
+  --text-on-chrome-muted: #94a3b8;
+
   /* shadcn/ui variables, mapped onto the tokens above */
   --background: var(--bg-base);
   --foreground: var(--text-primary);
@@ -89,6 +96,11 @@
   --color-state-success: var(--state-success);
   --color-state-warning: var(--state-warning);
   --color-state-info: var(--state-info);
+  --color-chrome: var(--bg-chrome);
+  --color-chrome-hover: var(--bg-chrome-hover);
+  --color-chrome-border: var(--border-chrome);
+  --color-on-chrome: var(--text-on-chrome);
+  --color-on-chrome-muted: var(--text-on-chrome-muted);
 
   /* shadcn/ui utilities (bg-primary, text-muted-foreground, …) */
   --color-background: var(--background);

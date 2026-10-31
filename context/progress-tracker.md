@@ -15,6 +15,13 @@ Update this file whenever the current phase, active feature, or implementation s
 - Context files written (project overview, architecture, UI, code standards, workflow, tracker).
 - Feature spec `01-design-system`: shadcn/ui initialized (`base-nova` style, Base UI primitives), components Button, Card, Dialog, Input, Tabs, Textarea, ScrollArea in `components/ui/` (unmodified), `lucide-react` installed, `lib/utils.ts` exports `cn()` (shadcn's `cn` package — clsx + tailwind-merge replacement). `globals.css` holds the `ui-context.md` light-theme tokens with shadcn variables mapped onto them. Verified: type check + lint pass, all components render, `cn()` merges project and shadcn tokens correctly, no stock shadcn palette or OS dark-mode styling in the compiled CSS.
 
+- Feature spec `02-editor` — editor chrome:
+  - [x] `components/editor/editor-navbar.tsx` — fixed `h-14` top navbar, left/center/right sections (`center` / `right` slot props), sidebar toggle using `PanelLeftOpen` / `PanelLeftClose` by `isSidebarOpen`, dark background (`bg-chrome`), subtle bottom border (`border-chrome-border`).
+  - [x] `components/editor/project-sidebar.tsx` — `fixed` below the navbar so it floats over the canvas without pushing content, slides in from the left via `translate-x`, props `isOpen` / `onClose` / optional `onNewProject`, header "Project" + close button, shadcn `Tabs` (My Projects / Shared) with empty placeholder states, full-width New Project button with `Plus` at the bottom. `inert` while closed.
+  - [x] `components/editor/editor-dialog.tsx` — dialog pattern over shadcn `Dialog` (unmodified) with token styling; supports `title`, `description`, `footer` actions, and body. No concrete dialogs built.
+  - [x] New dark chrome tokens in `globals.css` (`--bg-chrome`, `--bg-chrome-hover`, `--border-chrome`, `--text-on-chrome`, `--text-on-chrome-muted`), documented in `ui-context.md`.
+  - [x] Verified: type check, lint, and `next build` pass; new utilities are present in compiled CSS. Components are not yet mounted on any route.
+
 ## In Progress
 
 - None.
@@ -55,6 +62,7 @@ Product:
 - Can the customer edit the summary after the deposit, before the technician is assigned?
 - Is an "after-hours emergency" surcharge needed in the deposit rules?
 - Does the pilot need a basic metrics page in Phase 1, or is a manual monthly export enough?
+- Spec `02-editor` adds "editor" chrome with a project list (My Projects / Shared, New Project). No editor or project surface is defined in `project-overview.md` — which product surface uses it, and what is a "project" here?
 - Google reviews: pull through Google Places API (limited to 5 reviews), or company pastes selected reviews? Must be real either way.
 
 Technical:
@@ -81,6 +89,7 @@ Technical:
 ## Session Notes
 
 - 2026-10-31: Spec `01-design-system` said to match an "existing dark theme in globals.css"; this conflicted with `ui-context.md` (light theme, dark mode out of scope). Resolved with the user: light theme per `ui-context.md`; "no default light styling" read as "no stock shadcn neutral palette".
+- 2026-10-31: Spec `02-editor` asks for a dark navbar inside the light theme. Implemented as specified with dedicated `chrome` tokens (no raw colors); the rest of the theme stays light. The sidebar is a light `bg-elevated` panel because the spec doesn't give it a color.
 
 - Source plan: "Whole Process: Build, Launch, and Get Clients for Your AI HVAC/AC Platform (USA)". Phases, MVP list, and trust requirements in `project-overview.md` come from it.
 - Target timeline: Phase 0 1–2 weeks, Phase 1 MVP 6–10 weeks, Phase 2 another 6–10 weeks.
