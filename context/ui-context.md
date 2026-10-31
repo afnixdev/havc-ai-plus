@@ -52,6 +52,27 @@ Full color-name mapping (usable with any color utility: `bg-`, `text-`, `border-
 | `ai` / `ai-dim`          | `--accent-ai` / `--accent-ai-dim` |
 | `emergency` / `emergency-dim` | `--emergency` / `--emergency-dim` |
 | `state-error` / `state-success` / `state-warning` / `state-info` | `--state-*` |
+| `chrome` / `chrome-hover` | `--bg-chrome` / `--bg-chrome-hover` |
+| `chrome-border`          | `--border-chrome`        |
+| `on-chrome` / `on-chrome-muted` | `--text-on-chrome` / `--text-on-chrome-muted` |
+
+### Editor Chrome Tokens
+
+The editor top navbar (`components/editor/editor-navbar.tsx`, spec `02-editor`) is the one dark surface in the light theme. It uses only these tokens:
+
+| Role                  | CSS Variable             | Hex       |
+| --------------------- | ------------------------ | --------- |
+| Chrome background     | `--bg-chrome`            | `#0f172a` |
+| Chrome hover          | `--bg-chrome-hover`      | `#1e293b` |
+| Chrome bottom border  | `--border-chrome`        | `#1e293b` |
+| Text on chrome        | `--text-on-chrome`       | `#f8fafc` |
+| Muted text on chrome  | `--text-on-chrome-muted` | `#94a3b8` |
+
+### Editor Layout
+
+- Navbar: fixed `h-14`, full width, `z-50`, left / center / right sections. Left holds the sidebar toggle (`PanelLeftOpen` when closed, `PanelLeftClose` when open).
+- Project sidebar: `fixed` below the navbar, `w-72`, `bg-elevated` with shadow, floats over the canvas (never pushes content), slides in from the left (`translate-x`, disabled under `prefers-reduced-motion`), `inert` while closed.
+- Dialogs: `components/editor/editor-dialog.tsx` wraps shadcn `Dialog` with `rounded-3xl`, `bg-elevated`, token text colors, and a `bg-subtle` footer for actions.
 
 ### shadcn/ui Variable Mapping
 
